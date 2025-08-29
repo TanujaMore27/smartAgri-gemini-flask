@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvest Tracking Dashboard</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?farm,harvest') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        h1 {
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+        input {
+            width: 90%;
+            padding: 5px;
+            border: none;
+            text-align: center;
+        }
+        .button-container {
+            margin-top: 15px;
+        }
+        button {
+            background: #FFD700;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #FFC107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Harvest Tracking Dashboard</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Crop Name</th>
+                    <th>Sowing Month</th>
+                    <th>Harvest Month</th>
+                    <th>Months Left</th>
+                    <th>Land Acre</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="harvest-list"></tbody>
+        </table>
+        <div class="button-container">
+            <button onclick="addRow()">Add Entry</button>
+        </div>
+    </div>
+    
+    <script>
+        function addRow() {
+            const table = document.getElementById('harvest-list');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="text" placeholder="Crop Name"></td>
+                <td><input type="month"></td>
+                <td><input type="month" oninput="calculateMonthsLeft(this)"></td>
+                <td><input type="text" placeholder="Months Left" readonly></td>
+                <td><input type="number" placeholder="Land Acre"></td>
+                <td><button onclick="this.parentElement.parentElement.remove()">Remove</button></td>
+            `;
+            table.appendChild(row);
+        }
+        
+        function calculateMonthsLeft(input) {
+            const row = input.parentElement.parentElement;
+            const sowingMonth = row.children[1].children[0].value;
+            const harvestMonth = input.value;
+            if (sowingMonth && harvestMonth) {
+                const sowingDate = new Date(sowingMonth + '-01');
+                const harvestDate = new Date(harvestMonth + '-01');
+                const diffMonths = (harvestDate.getFullYear() - sowingDate.getFullYear()) * 12 + (harvestDate.getMonth() - sowingDate.getMonth());
+                row.children[3].children[0].value = diffMonths >= 0 ? diffMonths : "Invalid";
+            }
+        }
+    </script>
+</body>
+</html>

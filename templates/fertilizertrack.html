@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Tracker</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?farm,field') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        h1 {
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+        input {
+            width: 90%;
+            padding: 5px;
+            border: none;
+            text-align: center;
+        }
+        .button-container {
+            margin-top: 15px;
+        }
+        button {
+            background: #FFD700;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #FFC107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fertilizer Tracker</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Crop Name</th>
+                    <th>Fertilizer Needed</th>
+                    <th>Pesticide Needed</th>
+                    <th>Date Added</th>
+                    <th>Next Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="fertilizer-list"></tbody>
+        </table>
+        <div class="button-container">
+            <button onclick="addRow()">Add Entry</button>
+        </div>
+    </div>
+    
+    <script>
+        function addRow() {
+            const table = document.getElementById('fertilizer-list');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="text" placeholder="Crop Name"></td>
+                <td><input type="text" placeholder="Fertilizer"></td>
+                <td><input type="text" placeholder="Pesticide"></td>
+                <td><input type="date"></td>
+                <td><input type="date"></td>
+                <td><button onclick="this.parentElement.parentElement.remove()">Remove</button></td>
+            `;
+            table.appendChild(row);
+        }
+    </script>
+</body>
+</html>

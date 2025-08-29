@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 36px;
+            color: #4CAF50;
+        }
+        select {
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌾 Progress Report 🚜</h1>
+    <label for="report">Select Report Type:</label>
+    <select id="report" onchange="redirectToReport()">
+        <option value="">-- Select Report --</option>
+        <option value="seedsown.html">🌱 Sowing Report</option>
+        <option value="cropgrowth.html">🌾 Crop Growth Report</option>
+        <option value="harvest.html">🚜 Harvest Report</option>
+        <option value="fertilizertrack.html">🧪 Fertilizer Tracking</option>
+    </select>
+
+    <script>
+        function redirectToReport() {
+            let selectedReport = document.getElementById("report").value;
+            if (selectedReport) {
+                window.location.href = selectedReport;
+            }
+        }
+    </script>
+
+</body>
+</html>

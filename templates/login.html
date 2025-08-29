@@ -1,0 +1,39 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form action="{{ url_for('login') }}" method="POST">
+        <input type="text" name="username" placeholder="Enter Username" required>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
+
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Login with Google</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+     <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js"></script>
+ </head>
+ <body>
+     <div class="container">
+         <h2>Login with Google</h2>
+         <button id="google-login" class="btn">Sign in with Google</button>
+     </div>
+ 
+     <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+ </body>
+ </html>
+ 

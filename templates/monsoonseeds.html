@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monsoon Seeds</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #c9a7eb, #7ec850);
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: darkblue;
+        }
+        select {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Select Your Crop</h1>
+    <select id="cropSelect" onchange="redirectToPage()">
+        <option value="">--Select Crop--</option>
+        <option value="{{ url_for('cottonS') }}">Cotton</option>
+        <option value="{{ url_for('teaS') }}">Tea</option>
+        <option value="{{ url_for('sugarcaneS') }}">Sugarcane</option>
+        <option value="{{ url_for('guavaS') }}">Guava</option>
+    </select>
+
+    <script>
+        function redirectToPage() {
+            let crop = document.getElementById("cropSelect").value;
+            if (crop) {
+                window.location.href = crop;
+            }
+        }
+    </script>
+
+</body>
+</html>

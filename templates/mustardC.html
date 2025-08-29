@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustard Crop Management</title>
+    <style>
+        body {
+            background-color: #F5F5DC; /* Beige Background */
+            font-family: "Georgia", serif;
+            color: #2E3A23;
+            margin: 20px;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            border: 5px solid #A67B5B;
+        }
+        h1 {
+            text-align: center;
+            background-color: #8B5A2B;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 28px;
+        }
+        .crop-image {
+            width: 60%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 20px auto;
+        }
+        ul {
+            padding-left: 30px;
+            font-size: 18px;
+            list-style-type: square;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #8B5A2B;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        th, td {
+            border: 2px solid #2E3A23;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+        }
+        th {
+            background-color: #8B5A2B;
+            color: white;
+        }
+        button {
+            background-color: #8B5A2B;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #5A2D0C;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mustard Crop Management</h1>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4cGmwrjyUHCjchh5FhMyWR74neTqRz07m4Q&s" alt="Mustard Crop" class="crop-image">
+        
+        <div class="section">
+            <h2>Nutrients</h2>
+            <ul>
+                <li>Balanced NPK, and sulfur.</li>
+                <li>Organic matter is beneficial.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Pesticides & Fertilizers</h2>
+            <ul>
+                <li>Insecticides for pest control.</li>
+                <li>Fungicides for disease prevention.</li>
+                <li>Fertilizers: NPK, and sulfur for oil production.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Water Requirements</h2>
+            <ul>
+                <li>Moderate water requirements.</li>
+                <li>Avoid waterlogging.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Growth & Harvest</h2>
+            <ul>
+                <li>Moderate growth rate.</li>
+                <li>Harvesting time is when pods are mature and seeds are dry.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Watering Management Chart</h2>
+            <table id="wateringTable">
+                <tr>
+                    <th>Date</th>
+                    <th>Water Amount (Liters)</th>
+                    <th>Remarks</th>
+                </tr>
+            </table>
+            <button onclick="addRow()">Add Watering Record</button>
+        </div>
+    </div>
+
+    <script>
+        function addRow() {
+            let table = document.getElementById("wateringTable");
+            let row = table.insertRow(-1);
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+            cell1.innerHTML = `<input type="date" style="width: 100%; padding: 5px;">`;
+            cell2.innerHTML = `<input type="number" placeholder="Liters" style="width: 100%; padding: 5px;">`;
+            cell3.innerHTML = `<input type="text" placeholder="Remarks" style="width: 100%; padding: 5px;">`;
+        }
+    </script>
+</body>
+</html>

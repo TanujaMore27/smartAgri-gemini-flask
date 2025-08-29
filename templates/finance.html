@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Finance Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://example.com/farm-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-family: 'Georgia', serif;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        label {
+            flex: 1 1 150px;
+            font-weight: bold;
+        }
+        input {
+            flex: 2 1 250px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            align-self: center;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        canvas {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-tractor"></i> Farm Finance Management</h1>
+        <form id="finance-form">
+            <div class="form-group">
+                <label for="month">Month:</label>
+                <input type="month" id="month" required>
+            </div>
+            <div class="form-group">
+                <label for="expenditure">Expenditure (₹):</label>
+                <input type="number" id="expenditure" required>
+            </div>
+            <div class="form-group">
+                <label for="revenue">Revenue (₹):</label>
+                <input type="number" id="revenue" required>
+            </div>
+            <button type="submit"><i class="fas fa-plus-circle"></i> Add Record</button>
+        </form>
+        <div id="result">
+            <h2>Profit/Loss Analysis</h2>
+            <p id="analysis"></p>
+        </div>
+        <canvas id="financeChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const financeForm = document.getElementById('finance-form');
+            const analysis = document.getElementById('analysis');
+            const financeChartCtx = document.getElementById('financeChart').getContext('2d');
+            let financeData = {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Expenditure (₹)',
+                        data: [],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Revenue (₹)',
+                        data: [],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            const financeChart = new Chart(financeChartCtx, {
+                type: 'bar',
+                data: financeData,
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            financeForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const month = document.getElementById('month').value;
+                const expenditure = parseFloat(document.getElementById('expenditure').value);
+                const revenue = parseFloat(document.getElementById('revenue').value);
+
+                if (month && !isNaN(expenditure) && !isNaN(revenue)) {
+                    const profitOrLoss = revenue - expenditure;
+                    const profitOrLossPercentage = ((profitOrLoss / expenditure) * 100).toFixed(2);
+
+                    analysis.textContent = profitOrLoss >= 0
+                        ? `Profit: ₹${profitOrLoss} (${profitOrLossPercentage}%)`
+                        : `Loss: ₹${Math.abs(profitOrLoss)} (${Math.abs(profitOrLossPercentage)}%)`;
+
+                    financeData.labels.push(month);
+                    financeData.datasets[0].data.push(expenditure);
+                    financeData.datasets[1].data.push(revenue);
+                    financeChart.update();
+
+                    financeForm.reset();
+                } else {
+                    alert('Please fill in all fields with valid numbers.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

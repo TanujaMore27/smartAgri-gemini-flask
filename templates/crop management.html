@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Management</title>
+    <style>
+        body {
+            background-color: #E6E6FA; /* Lavender background */
+            font-family: 'Georgia', serif;
+            color: #4A3F35; /* Dark brown for readability */
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            background-color: #8B5A2B; /* Farm brown */
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .dropdown {
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #8B5A2B;
+            background-color: #FFF8DC; /* Light cream */
+            cursor: pointer;
+        }
+        .farm-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Management</h1>
+        <p>Select a crop to get detailed information:</p>
+        <select class="dropdown" id="cropSelect" onchange="redirectToCrop()">
+            <option value="">-- Select Crop --</option>
+            <option value="cottonC.html">Cotton</option>
+            <option value="teaC.html">Tea</option>
+            <option value="sugarcaneC.html">Sugarcane</option>
+            <option value="guavaC.html">Guava</option>
+            <option value="riceC.html">Rice</option>
+            <option value="maizeC.html">Maize</option>
+            <option value="tomatoC.html">Tomato</option>
+            <option value="mangoC.html">Mango</option>
+            <option value="wheatC.html">Wheat</option>
+            <option value="barleyC.html">Barley</option>
+            <option value="mustardC.html">Mustard</option>
+            <option value="orangeC.html">Orange</option>
+        </select>
+    </div>
+
+    <script>
+        function redirectToCrop() {
+            let selectedCrop = document.getElementById("cropSelect").value;
+            if (selectedCrop) {
+                window.location.href = selectedCrop;
+            }
+        }
+    </script>
+
+</body>
+</html>

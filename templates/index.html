@@ -1,0 +1,33 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agri Platform</title>
+</head>
+<body>
+    <h1>Welcome to Smart Agri Platform</h1>
+    <a href="{{ url_for('signup') }}">Signup</a> | 
+    <a href="{{ url_for('login') }}">Login</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with Google</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Login with Google</h2>
+        <a href="{{ url_for('signup') }}"><button>Sign Up</button></a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>

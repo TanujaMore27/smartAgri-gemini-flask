@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Financial Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf7dc;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            font-size: 32px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 250px;
+        }
+        .card h2 {
+            color: #388e3c;
+        }
+        .card input {
+            width: 80%;
+            padding: 8px;
+            margin-top: 10px;
+        }
+        .total {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">🌾 Financial Analysis 🚜</div>
+    <div class="container" id="crop-container">
+        <button onclick="addCrop()" style="padding: 15px 30px; font-size: 18px; background-color: #388e3c; color: white; border: none; cursor: pointer;">Add Crop</button>
+    </div>
+    <button onclick="calculateProfit()" style="padding: 10px 20px; margin-top: 20px; background-color: #388e3c; color: white; border: none; cursor: pointer;">Calculate Loss/Profit</button>
+    <div class="total" id="profit-display"></div>
+
+    <script>
+        function addCrop() {
+            let container = document.getElementById('crop-container');
+            let cropDiv = document.createElement('div');
+            cropDiv.classList.add('card');
+            cropDiv.innerHTML = `
+                <h2 contenteditable="true">🌱 Crop Name</h2>
+                <input type="number" class="seed-cost" placeholder="Seed Cost">
+                <input type="number" class="fertilizer-cost" placeholder="Fertilizer Cost">
+                <input type="number" class="labor-cost" placeholder="Labor Cost">
+                <input type="number" class="other-expenses" placeholder="Other Expenses">
+                <input type="number" class="total-revenue" placeholder="Total Revenue">
+            `;
+            container.appendChild(cropDiv);
+        }
+
+        function calculateProfit() {
+            let crops = document.querySelectorAll('.card');
+            let totalProfit = 0;
+            
+            crops.forEach(crop => {
+                let seedCost = parseFloat(crop.querySelector('.seed-cost').value) || 0;
+                let fertilizerCost = parseFloat(crop.querySelector('.fertilizer-cost').value) || 0;
+                let laborCost = parseFloat(crop.querySelector('.labor-cost').value) || 0;
+                let otherExpenses = parseFloat(crop.querySelector('.other-expenses').value) || 0;
+                let totalRevenue = parseFloat(crop.querySelector('.total-revenue').value) || 0;
+                
+                let totalExpenses = seedCost + fertilizerCost + laborCost + otherExpenses;
+                totalProfit += (totalRevenue - totalExpenses);
+            });
+            
+            let profitDisplay = document.getElementById('profit-display');
+            if (totalProfit > 0) {
+                profitDisplay.style.color = 'green';
+                profitDisplay.innerText = "🌾 Profit: ₹" + totalProfit;
+            } else if (totalProfit < 0) {
+                profitDisplay.style.color = 'red';
+                profitDisplay.innerText = "🚨 Loss: ₹" + totalProfit;
+            } else {
+                profitDisplay.style.color = 'black';
+                profitDisplay.innerText = "⚖️ Break-even: ₹0";
+            }
+        }
+    </script>
+</body>
+</html>
